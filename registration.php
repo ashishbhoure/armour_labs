@@ -4,8 +4,6 @@ require 'config.php';
 //signup
 
 if (isset($_POST['fname'])) {
-
-
     // get the post records
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -26,7 +24,7 @@ if (isset($_POST['fname'])) {
    } else {
         echo "Error!";
    }
-   }
+}
 
 
 
@@ -35,15 +33,16 @@ if (isset($_POST['fname'])) {
 
    
 
-   if(isset($_POST['submit']))
+if(isset($_POST['loginSubmit']))
    {
     $login_email = $_POST['email'];
     $login_pass = $_POST['psw'];
  
        // check email is register  or not 
        $query ="SELECT * FROM `registration` WHERE email = '$login_email' ";
-       $result = mysqli_query($con,$query);
 
+       $result = mysqli_query($con,$query);
+      
        $row = mysqli_fetch_array($result);
           // if email exists or not
          if ($login_email == $row['email']) {
@@ -62,7 +61,7 @@ if (isset($_POST['fname'])) {
              }
              // if password is wrong then else is work 
              else{
-                  echo "<script>alert('Wrong Password!');  </script>";
+                  echo "<script>alert('Wrong Password!'); location.href='index.php'; </script>";
                  
              }
          }

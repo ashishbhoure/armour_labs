@@ -49,15 +49,23 @@ require 'config.php';
 if(isset($_POST['submit'])){
     $name=$_POST['name'];
     $data=$_POST['data'];
+
+
     $value= $_POST['labs'];
     $query="SELECT * FROM web_categories WHERE Id='$value'";
     $query_run=mysqli_query($con, $query);
     $rows=mysqli_fetch_array($query_run);
-    $path= $rows['Image'];
+    $path= $rows['Title'];
     $count = $rows['Lab_Count'];
     $labCount = "UPDATE web_categories SET Lab_Count=$count+1 WHERE Id='$value' ";
     $query1_run=mysqli_query($con, $labCount);
     $count1=$rows['Lab_Count']+1;
+    $x = 'lab'.$count1;
+    // $_SESSION["x1"] = $x;
+    $query2 = "INSERT INTO lab_data (CategoryID,LAB_TITLE, LAB_NAME) VALUES ('$value','$name','$x')";
+
+    $query2_run=mysqli_query($con, $query2);
+
     $file_name = "labs/$path/lab".$count1.".php";
     $include_file = "<?php \nrequire '../../config.php'; \n?>";
     

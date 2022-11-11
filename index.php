@@ -9,10 +9,6 @@ require 'config.php';
     <title>armour_labs</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleCard.css">
-    <!-- <link rel="stylesheet" href="styleLogin.css"> -->
-    <!-- <link href="node_modules/bootstrap/dist/css/bootstrap.css"> -->
-    <!-- <link href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
-    <!-- <link href="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -36,7 +32,10 @@ require 'config.php';
                     <a class="nav-link bg-primary rounded-2 fw-bold me-2" aria-current="page" href="#">👤 ACCOUNT</a>
                   </li>                  
                   <li class="nav-item">
-                    <a class="nav-link bg-warm rounded-2 fw-bold me-2" aria-current="page" href="addLabs.php">➕ AAD Labs</a>
+                    <a class="nav-link bg-muted rounded-2 fw-bold me-2" aria-current="page" href="addLabs.php">➕ ADD Labs</a>
+                  </li>                  
+                  <li class="nav-item">
+                    <a class="nav-link bg-success rounded-2 fw-bold me-2" aria-current="page" href="addCategories.php">✏️ ADD Category</a>
                   </li>                  
                   <li class="nav-item" onclick="document.getElementById('login').style.display='block'" style="width:auto;">
                     <a class="nav-link bg-danger rounded-1 fw-bold me-2 ms-2" aria-current="page" href="#">LOGIN</a>
@@ -50,7 +49,7 @@ require 'config.php';
             </div>
           </nav>
 
-
+         
           <div id="cards" style="padding: 2%; top:5%">
           <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top:2%">
           <?php 
@@ -63,12 +62,14 @@ require 'config.php';
                 {
           ?>
             <div class="col">
-              <div onclick="window.location.href='labs/<?php echo $title['Image']; ?>/<?php echo $title['Image']; ?>Labs.php'" class="card">
-                <img src="./images/<?php echo $title['Image']; ?>.jpg" style="width: 100%; height:25vh;"></img>
+              <a href="labs/<?php echo $title['Title']; ?>/<?php echo $title['Title']; ?>Labs.php?Id=<?= $title['Id']; ?>" style="text-decoration:none;">
+              <div class="card">
+                <img src="./images/<?php echo $title['Img']; ?>" style="width: 100%; height:25vh;"></img>
                 <div class="container">
                   <h5 class="card-title text-center fw-bolder"><?= $title['Topic']; ?></h5>
                 </div>
               </div>
+              </a>
             </div>
             <?php
 
@@ -100,7 +101,7 @@ require 'config.php';
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit">Login</button>
+      <button type="submit" name="loginSubmit">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
